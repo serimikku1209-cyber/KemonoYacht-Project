@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DiceController : MonoBehaviour
 {
     [Header("UI参照")]
-    public Button rollButton;       // ロールボタン本体
-    public TextMeshProUGUI rollButtonText;    // ボタンのテキスト（「ROLL」「STOP」切り替え用）
-    public void UpdateButtonText(string newText)
-    {
-        rollButtonText.text = newText;
-    }
+    public Button rollButton;
+    public TextMeshProUGUI rollButtonText;
 
     [Header("背景画像（土台）")]
     public Sprite normalBaseSprite;
@@ -30,7 +27,6 @@ public class DiceController : MonoBehaviour
     private bool[] isKept = new bool[5];
     private bool isRolling = false;
 
-    // --- 追加：回数管理用 ---
     private int rollCount = 0;
     private const int MaxRollCount = 3;
 
@@ -49,7 +45,7 @@ public class DiceController : MonoBehaviour
 
     public void OnDiceClick(int index)
     {
-        // ロール中、または3回振り切った後はキープ変更不可
+        // 修正：3回振り切った後は、ダイスを触っても反応させない
         if (isRolling || rollCount >= MaxRollCount) return;
 
         isKept[index] = !isKept[index];
@@ -70,10 +66,15 @@ public class DiceController : MonoBehaviour
         }
     }
 
-    // ロールボタンが押された時の処理
     public void OnDiceButtonClick()
     {
-        if (rollCount >= MaxRollCount) return; // 3回制限
+        // 修正：3回振った後にボタンを押した場合はスコア選択フェーズへ
+        if (rollCount >= MaxRollCount)
+        {
+            Debug.Log("スコア選択へ進みます");
+            // ここに ScoreManager.ShowScoreOptions() などを呼ぶ処理を書く予定
+            return;
+        }
 
         if (!isRolling)
         {
@@ -81,14 +82,14 @@ public class DiceController : MonoBehaviour
         }
         else
         {
-            isRolling = false; // ストップ！
+            isRolling = false;
         }
     }
 
     private IEnumerator RollDiceRoutine()
     {
         isRolling = true;
-        UpdateRollButtonUI(); // テキストを「STOP」にする
+        UpdateRollButtonUI();
 
         while (isRolling)
         {
@@ -96,7 +97,8 @@ public class DiceController : MonoBehaviour
             {
                 if (!isKept[i])
                 {
-                    int randomIndex = Random.Range(0, 6);
+                    
+                    int randomIndex = UnityEngine.Random.Range(0, 6);
                     currentDiceValues[i] = randomIndex;
                     diceNumberImages[i].sprite = numberSprites[randomIndex];
                 }
@@ -104,18 +106,25 @@ public class DiceController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        // --- 確定処理 ---
-        rollCount++; // 回数を増やす
+        rollCount++;
+
+        // 修正：3回目に達したら、強制的に全てのダイスを「キープ状態」にする
+        if (rollCount >= MaxRollCount)
+        {
+            for (int i = 0; i < isKept.Length; i++)
+            {
+                isKept[i] = true;
+            }
+        }
 
         for (int i = 0; i < diceButtons.Length; i++)
         {
             UpdateDiceVisual(i);
         }
 
-        UpdateRollButtonUI(); // テキストを戻す or ボタン無効化
+        UpdateRollButtonUI();
     }
 
-    // ボタンの状態やテキストを更新する
     private void UpdateRollButtonUI()
     {
         if (isRolling)
@@ -126,8 +135,8 @@ public class DiceController : MonoBehaviour
         {
             if (rollCount >= MaxRollCount)
             {
+                // 修正：テキストを SELECT SCORE に変えるが、ボタンは無効化（interactable = false）しない
                 if (rollButtonText != null) rollButtonText.text = "SELECT SCORE";
-                rollButton.interactable = false; // ボタンを無効化
             }
             else
             {
@@ -136,12 +145,14 @@ public class DiceController : MonoBehaviour
         }
     }
 
-    // ターン終了時に外部（GameManagerなど）から呼ぶリセット関数
     public void ResetTurn()
     {
         rollCount = 0;
         for (int i = 0; i < isKept.Length; i++) isKept[i] = false;
-        rollButton.interactable = true;
+        // interactable は常に true で良くなったのでここでの変更は不要
         UpdateRollButtonUI();
+
+        // ターン開始時にダイスの見た目もリセット（任意）
+        for (int i = 0; i < diceButtons.Length; i++) UpdateDiceVisual(i);
     }
 }
