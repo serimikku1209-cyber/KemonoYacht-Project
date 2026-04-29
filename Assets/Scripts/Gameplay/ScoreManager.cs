@@ -4,6 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     // GameObjectではなくCanvasGroupをアタッチする
     [SerializeField] private CanvasGroup scoreTableCanvasGroup;
+    [SerializeField] private DiceController diceController; // ターンリセットのために参照
 
     void Start()
     {
@@ -28,6 +29,22 @@ public class ScoreManager : MonoBehaviour
             scoreTableCanvasGroup.alpha = 1f;          // 表示する
             scoreTableCanvasGroup.interactable = true;  // ボタンを押せるようにする
             scoreTableCanvasGroup.blocksRaycasts = true; // マウス反応を戻す
+        }
+    }
+    /// <summary>
+    /// 各スコアボタンから呼ばれるメソッド
+    /// </summary>
+    public void OnScoreSelected()
+    {
+        Debug.Log("スコアが選択されました。パネルを閉じます。");
+
+        // パネルを閉じる
+        HideScoreTable();
+
+        // 次のターンのためにダイスをリセットする
+        if (diceController != null)
+        {
+            diceController.ResetTurn();
         }
     }
 }

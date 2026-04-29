@@ -30,6 +30,10 @@ public class DiceController : MonoBehaviour
     private int rollCount = 0;
     private const int MaxRollCount = 3;
 
+    [Header("ScoreManager参照")]
+    public ScoreManager scoreManager;
+
+
     void Start()
     {
         for (int i = 0; i < diceButtons.Length; i++)
@@ -73,6 +77,10 @@ public class DiceController : MonoBehaviour
         {
             Debug.Log("スコア選択へ進みます");
             // ここに ScoreManager.ShowScoreOptions() などを呼ぶ処理を書く予定
+            if (scoreManager != null)
+            {
+                scoreManager.ShowScoreTable(); // スコアパネルを表示！
+            }
             return;
         }
 
