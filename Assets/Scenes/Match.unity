@@ -2065,7 +2065,7 @@ GameObject:
   - component: {fileID: 369768954}
   - component: {fileID: 369768953}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValuePick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 507933320}
   - component: {fileID: 507933319}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -2614,7 +2614,7 @@ GameObject:
   - component: {fileID: 551583783}
   - component: {fileID: 551583782}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValueMarch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -3088,7 +3088,7 @@ GameObject:
   - component: {fileID: 630005086}
   - component: {fileID: 630005085}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValueCollect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3133,7 +3133,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -3307,7 +3307,7 @@ GameObject:
   - component: {fileID: 679874630}
   - component: {fileID: 679874629}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValueHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3352,7 +3352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -3771,7 +3771,7 @@ GameObject:
   - component: {fileID: 708896825}
   - component: {fileID: 708896824}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValueSanpo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3816,7 +3816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -5201,7 +5201,7 @@ GameObject:
   - component: {fileID: 1043786751}
   - component: {fileID: 1043786750}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValueWars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5246,7 +5246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -5670,7 +5670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf0a9338b2d954eaf0e6726e92a6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  category: 6
+  category: 7
 --- !u!1 &1263277588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5830,7 +5830,7 @@ GameObject:
   - component: {fileID: 1296530233}
   - component: {fileID: 1296530232}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5875,7 +5875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -5989,10 +5989,10 @@ MonoBehaviour:
   - {fileID: 1296530232}
   - {fileID: 507933319}
   - {fileID: 1349289291}
-  - {fileID: 1349289291}
   - {fileID: 1808622228}
   - {fileID: 369768953}
   - {fileID: 630005085}
+  - {fileID: 679874629}
   - {fileID: 708896824}
   - {fileID: 551583782}
   - {fileID: 1043786750}
@@ -6170,7 +6170,7 @@ GameObject:
   - component: {fileID: 1349289292}
   - component: {fileID: 1349289291}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6215,7 +6215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -6438,7 +6438,7 @@ GameObject:
   - component: {fileID: 1356653397}
   - component: {fileID: 1356653396}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6483,7 +6483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -6840,7 +6840,7 @@ GameObject:
   - component: {fileID: 1439402050}
   - component: {fileID: 1439402049}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6885,7 +6885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
@@ -9039,7 +9039,7 @@ GameObject:
   - component: {fileID: 1808622229}
   - component: {fileID: 1808622228}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: ScoreValue6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9084,7 +9084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
   m_sharedMaterial: {fileID: 1392111740322132596, guid: 74ccf3f7b565a7d4384631dde774cfa5, type: 2}
