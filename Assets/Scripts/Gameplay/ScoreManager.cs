@@ -1,24 +1,53 @@
 using UnityEngine;
+using TMPro;
+
+// 役の定義（クラスの外に出すことで、どこからでも ScoreCategory と呼べる）
+public enum ScoreCategory
+{
+    Ones, Twos, Threes, Fours, Fives, Sixes,
+    HoshikuzuHiroi,
+    HoshiAtsume,
+    KemonoNoOyado,
+    KomichiNoSanpo,
+    SvelGoushin,
+    KemonoKowars
+}
 
 public class ScoreManager : MonoBehaviour
 {
-    // GameObjectではなくCanvasGroupをアタッチする
     [SerializeField] private CanvasGroup scoreTableCanvasGroup;
-    [SerializeField] private DiceController diceController; // ターンリセットのために参照
+    [SerializeField] private DiceController diceController;
+
+    [Header("スコアテキスト参照")]
+    public TextMeshProUGUI[] scoreTexts; // Inspectorで各役のテキストを順番に入れておくと楽だぞ！
 
     void Start()
     {
-        // 最初は非表示
         HideScoreTable();
+    }
+
+    public void OnScoreSelected(ScoreCategory category)
+    {
+        Debug.Log(category + " が選択された！");
+
+        // TODO: ここで点数計算（現在は仮）
+        // int score = CalculateScore(category, diceController.GetCurrentDiceValues());
+
+        HideScoreTable();
+
+        if (diceController != null)
+        {
+            diceController.ResetTurn();
+        }
     }
 
     public void HideScoreTable()
     {
         if (scoreTableCanvasGroup != null)
         {
-            scoreTableCanvasGroup.alpha = 0f;          // 透明にする
-            scoreTableCanvasGroup.interactable = false; // ボタンを押せなくする
-            scoreTableCanvasGroup.blocksRaycasts = false; // マウス反応を消す
+            scoreTableCanvasGroup.alpha = 0f;
+            scoreTableCanvasGroup.interactable = false;
+            scoreTableCanvasGroup.blocksRaycasts = false;
         }
     }
 
@@ -26,25 +55,9 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreTableCanvasGroup != null)
         {
-            scoreTableCanvasGroup.alpha = 1f;          // 表示する
-            scoreTableCanvasGroup.interactable = true;  // ボタンを押せるようにする
-            scoreTableCanvasGroup.blocksRaycasts = true; // マウス反応を戻す
-        }
-    }
-    /// <summary>
-    /// 各スコアボタンから呼ばれるメソッド
-    /// </summary>
-    public void OnScoreSelected()
-    {
-        Debug.Log("スコアが選択されました。パネルを閉じます。");
-
-        // パネルを閉じる
-        HideScoreTable();
-
-        // 次のターンのためにダイスをリセットする
-        if (diceController != null)
-        {
-            diceController.ResetTurn();
+            scoreTableCanvasGroup.alpha = 1f;
+            scoreTableCanvasGroup.interactable = true;
+            scoreTableCanvasGroup.blocksRaycasts = true;
         }
     }
 }
