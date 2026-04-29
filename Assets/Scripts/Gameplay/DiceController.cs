@@ -33,7 +33,6 @@ public class DiceController : MonoBehaviour
     [Header("ScoreManager参照")]
     public ScoreManager scoreManager;
 
-
     void Start()
     {
         for (int i = 0; i < diceButtons.Length; i++)
@@ -49,7 +48,6 @@ public class DiceController : MonoBehaviour
 
     public void OnDiceClick(int index)
     {
-        // 修正：3回振り切った後は、ダイスを触っても反応させない
         if (isRolling || rollCount >= MaxRollCount) return;
 
         isKept[index] = !isKept[index];
@@ -72,14 +70,12 @@ public class DiceController : MonoBehaviour
 
     public void OnDiceButtonClick()
     {
-        // 修正：3回振った後にボタンを押した場合はスコア選択フェーズへ
         if (rollCount >= MaxRollCount)
         {
             Debug.Log("スコア選択へ進みます");
-            // ここに ScoreManager.ShowScoreOptions() などを呼ぶ処理を書く予定
             if (scoreManager != null)
             {
-                scoreManager.ShowScoreTable(); // スコアパネルを表示！
+                scoreManager.ShowScoreTable();
             }
             return;
         }
@@ -105,7 +101,6 @@ public class DiceController : MonoBehaviour
             {
                 if (!isKept[i])
                 {
-                    
                     int randomIndex = UnityEngine.Random.Range(0, 6);
                     currentDiceValues[i] = randomIndex;
                     diceNumberImages[i].sprite = numberSprites[randomIndex];
@@ -116,7 +111,6 @@ public class DiceController : MonoBehaviour
 
         rollCount++;
 
-        // 修正：3回目に達したら、強制的に全てのダイスを「キープ状態」にする
         if (rollCount >= MaxRollCount)
         {
             for (int i = 0; i < isKept.Length; i++)
@@ -143,7 +137,6 @@ public class DiceController : MonoBehaviour
         {
             if (rollCount >= MaxRollCount)
             {
-                // 修正：テキストを SELECT SCORE に変えるが、ボタンは無効化（interactable = false）しない
                 if (rollButtonText != null) rollButtonText.text = "SELECT SCORE";
             }
             else
@@ -157,10 +150,20 @@ public class DiceController : MonoBehaviour
     {
         rollCount = 0;
         for (int i = 0; i < isKept.Length; i++) isKept[i] = false;
-        // interactable は常に true で良くなったのでここでの変更は不要
         UpdateRollButtonUI();
 
-        // ターン開始時にダイスの見た目もリセット（任意）
         for (int i = 0; i < diceButtons.Length; i++) UpdateDiceVisual(i);
+    }
+
+    // ここを修正：new int にしたぞ！
+    public int[] GetCurrentDiceValues()
+    {
+        int[] values = new int[6];
+        for (int i = 0; i < currentDiceValues.Length; i++)
+        {
+            // 内部インデックス(0~5)に1を足して、実際の目(1~6)にする
+            values[i] = currentDiceValues[i] + 1;
+        }
+        return values;
     }
 }
