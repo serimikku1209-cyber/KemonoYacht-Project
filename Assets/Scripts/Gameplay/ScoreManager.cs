@@ -69,6 +69,16 @@ public class ScoreManager : MonoBehaviour
         // パネルを閉じてターン終了
         HideScoreTable();
         diceController.ResetTurn();
+
+        // --- 修正箇所：GameManagerにターン終了を伝え、現在の合計スコアを渡す ---
+        // ※FindObjectOfTypeは小分け設計としては少し重いが、まずは確実に動かすために使用
+        GameManager gm = FindObjectOfType<GameManager>();
+        if (gm != null)
+        {
+            // 現在のプレイヤー合計スコア（ボーナス込み）を計算
+            int currentTotal = scores.Sum() + ((scores.Take(6).Sum() >= 63) ? 35 : 0);
+            gm.NextTurn(currentTotal);
+        }
     }
 
     /// <summary>

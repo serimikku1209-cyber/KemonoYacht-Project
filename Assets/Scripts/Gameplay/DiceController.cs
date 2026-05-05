@@ -48,35 +48,53 @@ public class DiceController : MonoBehaviour
 
     public void OnDiceClick(int index)
     {
-        if (isRolling || rollCount >= MaxRollCount) return;
+        // 修正点：1投目が終わる前（rollCount == 0）はキープさせない
+        // ロール中、またはすでに3回振り切っている場合もガード
+        if (rollCount == 0 || isRolling || rollCount >= MaxRollCount) return;
 
         isKept[index] = !isKept[index];
         UpdateDiceVisual(index);
+
+        // UI（ボタンのテキスト）を再評価する
+        UpdateRollButtonUI();
     }
 
     private void UpdateDiceVisual(int index)
     {
         int faceIndex = currentDiceValues[index];
         Image baseImage = diceButtons[index].GetComponent<Image>();
+        
         if (baseImage != null)
         {
             baseImage.sprite = isKept[index] ? keptBaseSprite : normalBaseSprite;
         }
+
         if (diceNumberImages[index] != null)
         {
             diceNumberImages[index].sprite = numberSprites[faceIndex];
         }
     }
 
+    // すべてのダイスがキープされているか確認する（保守性のための小分けメソッド）
+    private bool CheckAllDiceKept()
+    {
+        foreach (bool kept in isKept)
+        {
+            if (!kept) return false; // 1つでも未確定があればfalse
+        }
+        return true; // 全部キープされていればtrue
+    }
+
     public void OnDiceButtonClick()
     {
-        if (rollCount >= MaxRollCount)
+        // SELECT SCORE と表示されている状態の判定
+        bool isAllKept = CheckAllDiceKept();
+
+        // 1回以上振っていて、かつ（3回終了 or 全キープ）ならスコア選択へ
+        if (rollCount > 0 && (rollCount >= MaxRollCount || isAllKept))
         {
             Debug.Log("スコア選択へ進みます");
-            if (scoreManager != null)
-            {
-                scoreManager.ShowScoreTable();
-            }
+            if (scoreManager != null) scoreManager.ShowScoreTable();
             return;
         }
 
@@ -135,12 +153,17 @@ public class DiceController : MonoBehaviour
         }
         else
         {
-            if (rollCount >= MaxRollCount)
+            // 条件：3回振り切った OR (1回以上振っている かつ 全ダイスキープ)
+            bool isAllKept = CheckAllDiceKept();
+
+            // 1投目が終わっていて、かつ（3回終了 or 全キープ）なら
+            if (rollCount > 0 && (rollCount >= MaxRollCount || isAllKept))
             {
                 if (rollButtonText != null) rollButtonText.text = "SELECT SCORE";
             }
             else
             {
+                // まだ振れる（1投目前含む）状態
                 if (rollButtonText != null) rollButtonText.text = $"ROLL ({rollCount}/{MaxRollCount})";
             }
         }
